@@ -6,4 +6,5 @@ DEMO Using Python, Flask, and Angular to Build Modern Web Apps
 #2 Result 2
 *Part 1:
 need to delete all .data in main.py, add launch.json into vs folder
+
 ![result2](/uploads/261a3db8d5b314a9bfa43d8c20fa9f57/result2.jpg)
