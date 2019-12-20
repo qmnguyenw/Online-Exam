@@ -28,5 +28,16 @@
             ],
             "jinja": true
         },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Chrome Angular",
+            "url": "localhost",
+            "webRoot": "${workspaceFolder}",
+            "runtimeArgs": [
+                // "--kiosk",
+                // "--remote-debugging-port=9222"
+            ]
+        }
     ]
 }
