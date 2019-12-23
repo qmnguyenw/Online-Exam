@@ -106,3 +106,24 @@ def requires_auth(f):
         }, 400)
 
     return decorated
+
+def requires_role(required_role):
+    def decorator(f):
+        def wrapper(**args):
+            token = get_token_auth_header()
+            unverified_claims = jwt.get_unverified_claims(token)
+
+            # search current token for the expected role
+            if unverified_claims.get('https://online-exams.com/role'):
+                roles = unverified_claims['https://online-exams.com/role']
+                for role in roles:
+                    if role == required_role:
+                        return f(**args)
+
+            raise AuthError({
+                'code': 'insuficient_role',
+                'description': 'You do not have the roles needed to perform this operation.'
+            }, 401)
+
+        return wrapper
+    return decorator
