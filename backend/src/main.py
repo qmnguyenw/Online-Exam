@@ -7,15 +7,14 @@ from flask_cors import CORS
 from .entities.entity import Session, engine, Base
 from .entities.exam import Exam, ExamSchema
 
-# creating the Flask application
-app = Flask(__name__)
-
-# if needed, generate database schema
-Base.metadata.create_all(engine)
+from .auth import AuthError, requires_auth
 
 # creating the Flask application
 app = Flask(__name__)
 CORS(app)
+
+# if needed, generate database schema
+Base.metadata.create_all(engine)
 
 # start session
 session = Session()
@@ -48,11 +47,12 @@ def get_exams():
     schema = ExamSchema(many=True)
     exams = schema.dump(exam_objects)
 
-    # serializing as JSON
+    # serializing as JSON}' http://0.0.0.0:5000/exams
     session.close()
     return jsonify(exams)
 
 @app.route('/exams', methods=['POST'])
+@requires_auth
 def add_exam():
     # mount exam object
     posted_exam = ExamSchema(only=('title', 'description'))\
@@ -69,3 +69,9 @@ def add_exam():
     new_exam = ExamSchema().dump(exam)
     session.close()
     return jsonify(new_exam), 201
+
+@app.errorhandler(AuthError)
+def handle_auth_error(ex):
+    response = jsonify(ex.error)
+    response.status_code = ex.status_code
+    return response
