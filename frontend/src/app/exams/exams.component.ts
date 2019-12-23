@@ -1,12 +1,12 @@
-import * as Auth0 from "auth0-web";
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Subscription } from "rxjs/Subscription";
-import { Exam } from "./exam.model";
-import { ExamsApiService } from "./exams-api.service";
+import * as Auth0 from 'auth0-web';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import { Exam } from './exam.model';
+import { ExamsApiService } from './exams-api.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
-  selector: "exams",
+  selector: 'exams',
   template: `
     <h2>Exams</h2>
     <p>Choose an exam and start studying.</p>

@@ -62,11 +62,11 @@
 // export class AppComponent { }
 
 // 4th
-import { Component, OnInit } from "@angular/core";
-import * as Auth0 from "auth0-web";
+import { Component, OnInit } from '@angular/core';
+import * as Auth0 from 'auth0-web';
 
 @Component({
-  selector: "app-root",
+  selector: 'app-root',
   template: `
     <mat-toolbar color="primary" class="mat-elevation-z10">
       <button mat-button>Online Exams</button>
