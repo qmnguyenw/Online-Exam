@@ -33,6 +33,7 @@ export class ExamsApiService {
   saveExam(exam: Exam): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
+        'Content-Type': 'application/json',
         'Authorization': `Bearer ${Auth0.getAccessToken()}`
       })
     };
@@ -43,9 +44,11 @@ export class ExamsApiService {
   deleteExam(examId: number) {
     const httpOptions = {
       headers: new HttpHeaders({
+        'Content-Type': 'application/json',
         'Authorization': `Bearer ${Auth0.getAccessToken}`
       })
     };
-    return this.http.delete(`${API_URL}/exams/${examId}`, httpOptions);
+    return this.http
+      .delete(`${API_URL}/exams/${examId}`, httpOptions);
   }
 }

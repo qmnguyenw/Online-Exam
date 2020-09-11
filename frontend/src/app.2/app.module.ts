@@ -17,30 +17,27 @@
 // })
 // export class AppModule { }
 
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
 
-import { AppComponent } from './app.component';
-import { ExamsApiService } from './exams/exams-api.service';
+import {AppComponent} from './app.component';
+import {ExamsApiService} from './exams/exams-api.service';
 
-import { ExamFormComponent } from './exams/exam-form.component';
-import { RouterModule, Routes } from '@angular/router';
-import { ExamsComponent } from './exams/exams.component';
+import {ExamFormComponent} from './exams/exam-form.component';
+import {RouterModule, Routes} from '@angular/router';
+import {ExamsComponent} from './exams/exams.component';
 
 import * as Auth0 from 'auth0-web';
-import { CallbackComponent } from './callback.component';
+import {CallbackComponent} from './callback.component';
 
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatToolbarModule,
-  MatButtonModule,
-  MatCardModule,
-  MatInputModule,
+  MatToolbarModule, MatButtonModule, MatCardModule, MatInputModule
 } from '@angular/material';
 
 const appRoutes: Routes = [
-  { path: 'callback', component: CallbackComponent },
+  { path: 'callback', component: CallbackComponent},
   { path: 'new-exam', component: ExamFormComponent },
   { path: '', component: ExamsComponent },
 ];
@@ -55,7 +52,9 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(
+      appRoutes,
+    ),
     NoopAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
@@ -63,7 +62,7 @@ const appRoutes: Routes = [
     MatInputModule,
   ],
   providers: [ExamsApiService],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor() {
@@ -72,7 +71,7 @@ export class AppModule {
       audience: 'https://online-exam.digituz.com.br',
       clientID: 'AJ1THQKS2cB0dJHrkQGJbyvUuINsLEEa',
       redirectUri: 'http://localhost:4200/callback',
-      scope: 'openid profile manage:exams',
+      scope: 'openid profile manage:exams'
     });
   }
 }
